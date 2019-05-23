@@ -13,7 +13,9 @@ class Utility(object):
 
 class Debug(object):
     log_file = None
-    event_count = {'d': 0, 'l': 0, 't': 0, 'i': 0}
+    summary_file = None
+    recon_file = None
+    event_count = {'D': 0, 'L': 0, 'T': 0, 'I': 0, 'S':0, 'SL': 0, 'TL': 0, 'IL': 0, 'DL': 0}
 
     def __init__(self):
         pass
@@ -49,6 +51,26 @@ class Debug(object):
                 Debug.log_file.write(str(body))
             Debug.log_file.write('\n')
 
+    @staticmethod
+    def summary(header, bodies=[], pformat=False):
+        Debug.summary_file.write(header)
+        for body in bodies:
+            if (pformat):
+                Debug.summary_file.write(pprint.pformat(body))
+            else:
+                Debug.summary_file.write(str(body))
+            Debug.summary_file.write('\n')
+    
+    @staticmethod
+    def recon_table(header, bodies=[], pformat=False):
+        Debug.recon_file.write(header)
+        for body in bodies:
+            if (pformat):
+                Debug.recon_file.write(pprint.pformat(body))
+            else:
+                Debug.recon_file.write(str(body))
+            Debug.recon_file.write('\n')
+
 
 class TreeNode(object):
     def __init__(self,
@@ -58,6 +80,7 @@ class TreeNode(object):
                  distance_to_parent=None,
                  children=None):
         self.node_id = node_id
+        self.fake_node_id = -1
         self.name = name
         self.parent_id = parent
         self.distance_to_parent = distance_to_parent
@@ -65,6 +88,7 @@ class TreeNode(object):
         self.distance_to_children = []
         self.clade = []
         self.clade_split = []
+        self.events = []
         return
     
     def __repr__(self):
@@ -215,6 +239,37 @@ class GenericTree(object):
 
     def node_by_name(self, name):
         return self.nodes_name_dict[name]
+
+    # def fake(self):
+    #     temp_nodes = self.nodes.copy()
+    #     curr_index = 0
+    #     while (len(temp_nodes) > 0):
+    #         parent_nodes = []
+    #         for node in temp_nodes:
+    #             if (node.fake_node_id == -1):
+    #                 node.fake_node_id = curr_index
+    #                 curr_index += 1
+    #                 if (node.parent_id != -1):
+    #                     parent_nodes.append(self.node_by_id(node.parent_id))
+    #         temp_nodes = parent_nodes
+
+    def post_order_fake_id_recurse(self, index, node):
+        curr_index = index
+        for child in node.children:
+            child_node = self.node_by_id(child)
+            curr_index = self.post_order_fake_id_recurse(curr_index, child_node)
+        node.fake_node_id = curr_index
+        curr_index += 1
+        return curr_index
+
+    def post_order_fake_id(self):
+        root = self.root
+        self.post_order_fake_id_recurse(0, root)
+
+    def get_fake_id_from_real_id(self, real_id):
+        node = self.node_by_id(int(real_id))
+        fake_id = node.fake_node_id
+        return fake_id
     
     # find the distance of a given node to the root
     # needed when finding the walking distance

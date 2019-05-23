@@ -54,6 +54,18 @@ class SpeciesTree(GenericTree):
         super().construct_nodes(path=output_path, process_tree=True)
         return
 
+    # def assign_fake_id(self):
+    #     curr_index = 0
+    #     for n in SpeciesTree.global_species_tree.skbio_tree.postorder():
+    #         for c in n.children:
+    #             node = self.node_by_name(c.name)
+    #             node.fake_node_id = curr_index
+    #             curr_index += 1
+
+    #     root = self.node_by_name(SpeciesTree.global_species_tree.skbio_tree.name)
+    #     root.fake_node_id = curr_index
+
+
     def get_lambda_coal(self, clade_set):
         indices = []
         for clade in clade_set:

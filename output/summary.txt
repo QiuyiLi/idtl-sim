@@ -1,0 +1,82 @@
+Summary created on Thu May 23 18:42:10 2019
+
+Species_tree_table:
+node_id	clade_set
+0	0	[0]
+1	1	[1]
+2	2	[2]
+3	5	[5]
+4	3	[1, 2]
+5	4	[0, 1, 2]
+6	6	[0, 1, 2, 5]
+
+Gene_tree_table:
+gene_node_id	clade_set
+0	0	[5]
+1	1	[5]
+2	2	[5]
+3	3	[5]
+4	4	[5]
+
+event_table:
+	gene_node_id	clade_set	event	species_node_id
+3	3	[]	D	5
+4	4	[]	D	6
+4	4	[]	SL	6
+
+full_events:
+{'gene_node_id': 6,
+ 'gene_node_name': 'ABCD',
+ 'index': 1,
+ 'species_node_id': 6,
+ 'type': 's'}
+{'gene_node_id': 5,
+ 'gene_node_name': 'ABC',
+ 'index': 2,
+ 'species_node_id': 5,
+ 'type': 's'}
+{'gene_node_id': 4,
+ 'gene_node_name': 'BC',
+ 'index': 3,
+ 'species_node_id': 4,
+ 'type': 's'}
+{'distance_to_gene_node': 1.2660473999815767,
+ 'distance_to_species_node': 0.16986082892761178,
+ 'event_height': 5.169860828927612,
+ 'gene_node_id': 5,
+ 'gene_node_name': '0*1*2*',
+ 'index': 4,
+ 'species_node_id': 6,
+ 'type': 'loss'}
+{'distance_to_gene_node': 5.458543915935369,
+ 'distance_to_species_node': 0.45854391593536903,
+ 'event_height': 5.458543915935369,
+ 'gene_node_id': 3,
+ 'gene_node_name': '3*',
+ 'index': 5,
+ 'species_node_id': 6,
+ 'type': 'duplication'}
+{'distance_to_gene_node': 4.052364238376581,
+ 'distance_to_species_node': 4.052364238376581,
+ 'event_height': 4.052364238376581,
+ 'gene_node_id': 3,
+ 'gene_node_name': '3*',
+ 'index': 8,
+ 'species_node_id': 3,
+ 'type': 'loss'}
+{'distance_to_gene_node': 1.3807934144851908,
+ 'distance_to_species_node': 1.3807934144851908,
+ 'event_height': 1.3807934144851908,
+ 'gene_node_id': 0,
+ 'gene_node_name': '3*',
+ 'index': 6,
+ 'species_node_id': 3,
+ 'type': 'duplication'}
+{'distance_to_gene_node': 1.0591968068116246,
+ 'distance_to_species_node': 1.0591968068116246,
+ 'event_height': 1.0591968068116246,
+ 'gene_node_id': 0,
+ 'gene_node_name': '3*',
+ 'index': 7,
+ 'species_node_id': 3,
+ 'type': 'duplication'}

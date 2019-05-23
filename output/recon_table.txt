@@ -1,0 +1,4 @@
+gene_id	species_id	event_name
+3	5	D
+4	6	D
+4	6	SL
